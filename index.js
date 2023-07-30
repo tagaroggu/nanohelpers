@@ -89,3 +89,11 @@ export function use(atomOrStore) {
 }
 
 export const $ = use;
+
+/**
+ * Creates a getter-setter pair similar to the signals in `solid-js`. 
+ * @template T
+ * @param {import('nanostores').WritableAtom<T>} atom
+ * @returns {[() => T, (value: T) => void]}
+ */
+export const solidify = atom => [() => $(atom), (value) => atom.set(value)];
